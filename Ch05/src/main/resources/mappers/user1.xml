@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user1">
+	<insert id="insertUser1">
+		INSERT INTO `user1` VALUES (#{uid}, #{name}, #{hp}, #{age});
+	</insert>
+	<select id="selectUser1"></select>
+	<select id="selectUser1s"></select>
+	<update id="updateUser1"></update>
+	<delete id="deleteUser1"></delete>
+</mapper>
