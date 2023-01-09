@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>include</title>
+	</head>
+	<body>
+		<h3>Thymeleaf include 실습</h3>
+		
+		<h4>include 기본</h4>
+		<th:block th:include="/fragment/_header.html"/>
+		<main>
+			<h3>main1 입니다.</h3>
+		</main>
+		<th:block th:include="/fragment/_footer.html"/>
+		<hr>
+		
+		<h4>include insert</h4>
+		<div th:insert="/fragment/_header.html"></div>
+		<main>
+			<h3>main2 입니다.</h3>
+		</main>
+		<div th:insert="/fragment/_footer.html"></div>
+		<hr>
+		
+		<h4>include replace</h4>
+		<div th:replace="/fragment/_header.html"></div>
+		<main>
+			<h3>main3 입니다.</h3>
+		</main>
+		<div th:replace="/fragment/_footer.html"></div>
+
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+	</head>
+	<body>
+		<h3>스프링부트 실습</h3>
+		<a href="/hello">hello</a>
+		<a href="/welcome">welcome</a>
+		<a href="/greeting">greeting</a>
+		
+		<h4>타임리프 출력</h4>
+		<p>[[${tit1}]]</p>
+		<p th:text="${tit2}">내용</p>
+		
+		<h4>타임리프 조건문</h4>
+		<p>
+			<span th:if="${user1.name=='홍길동'}">user1은 홍길동 입니다.</span>
+			<span th:if="${user1.name=='김유신'}">user1은 김유신 입니다.</span>
+		</p>
+		<p>
+			<span th:if="${user1.age > 20}">user1은 성인 입니다.</span>		
+			<span th:unless="${user1.age > 20}">user1은 미성인 입니다.</span>		
+		</p>
+		<p>
+			<span th:if="${user1}">user1은 참 입니다.</span>		
+			<span th:unless="${user1}">user1은 거짓 입니다.</span>		
+		</p>
+		<p>
+			<span th:if="${user2}">user2은 참 입니다.</span>		
+			<span th:unless="${user2}">user2은 거짓 입니다.</span>		
+		</p>
+		<p th:switch="${user1.age > 20}">
+			<span th:case="true">user1은 성인 입니다.</span>		
+			<span th:case="false">user1은 미성인 입니다.</span>		
+		</p>
+		
+		<h4>타임리프 반복문</h4>
+		<table border="1">
+			<tr th:each="user:${users}">
+				<td>[[${user.uid}]]</td>
+				<td>[[${user.name}]]</td>
+				<td th:text="${user.hp}">휴대폰</td>
+				<td th:text="${user.age}">나이</td>
+			</tr>
+		</table>
+		
+		<h4>타임리프 링크</h4>
+		<a th:href="@{/sub/include}">타임리프 include 실습</a>
+		<a th:href="@{/sub/layout}">타임리프 layout 실습</a>
+		
+	</body>
+</html>
