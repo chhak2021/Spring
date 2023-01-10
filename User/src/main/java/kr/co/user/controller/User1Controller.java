@@ -11,29 +11,28 @@ import kr.co.user.vo.User1VO;
 
 
 @Controller
-@RequestMapping("/user1")
 public class User1Controller {
 
 	@Autowired
 	private User1Service service;
 	
-	@GetMapping("/list")
+	@GetMapping("/user1/list")
 	public String list() {
 		return "/user1/list";
 	}
 	
-	@GetMapping("/register")
+	@GetMapping("/user1/register")
 	public String register() {
 		return "/user1/register";
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("/user1/register")
 	public String register(User1VO vo) {
 		service.insertUser1(vo);
 		return "redirect:/user1/list";
 	}
 	
-	@GetMapping("/modify")
+	@GetMapping("/user1/modify")
 	public String modify() {
 		return "/user1/modify";
 	}
