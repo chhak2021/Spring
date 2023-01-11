@@ -6,26 +6,26 @@
 	</head>
 <body>
 	<h3>user1 수정</h3>
-	<a href="/Ch05">Ch05 메인</a>
-	<a href="/Ch05/user1/list">user1 목록</a>
+	<a th:href="@{/}">Ch05 메인</a>
+	<a th:href="@{/user1/list}">user1 목록</a>
 	
-	<form action="/Ch05/user1/modify" method="post">
+	<form th:action="@{/user1/modify}" method="post">
 		<table border="1">
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="uid" value="${user.uid}" readonly="readonly"></td>
+				<td><input type="text" name="uid" th:value="${user.uid}" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="name" value="${user.name}"></td>
+				<td><input type="text" name="name" th:value="${user.name}"></td>
 			</tr>
 			<tr>
 				<td>휴대폰</td>
-				<td><input type="text" name="hp" value="${user.hp}"></td>
+				<td><input type="text" name="hp" th:value="${user.hp}"></td>
 			</tr>
 			<tr>
 				<td>나이</td>
-				<td><input type="number" name="age" value="${user.age}"></td>
+				<td><input type="number" name="age" th:value="${user.age}"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right"><input type="submit" value="수정"></td>
