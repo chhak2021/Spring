@@ -22,9 +22,9 @@ public class User1Controller {
 	}
 	
 	@PostMapping("/user1/login")
-	public String login(User1VO vo, HttpSession session) {
+	public String login(String uid, String pass, HttpSession session) {
 		
-		User1VO user = service.selectUser1(vo);
+		User1VO user = service.selectUser1(uid, pass);
 		
 		if(user != null) {
 			// 회원이 맞을 경우
@@ -35,5 +35,16 @@ public class User1Controller {
 			// 회원이 아닌 경우
 			return "redirect:/user1/login?success=100";
 		}
+	}
+	
+	@GetMapping("/user1/loginSuccess")
+	public String loginSuccess() {
+		return "/user1/loginSuccess";
+	}
+	
+	
+	@GetMapping("/user1/logout")
+	public String logout() {
+		return "redirect:/user1/login?success=200";
 	}
 }

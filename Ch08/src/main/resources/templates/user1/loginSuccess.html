@@ -7,7 +7,7 @@
 	<body>
 		<h3>user1 loginSuccess</h3>
 		<p>
-			홍길동님 반갑습니다.<br>
+			[[${session.sessUser.name}]]님 반갑습니다.<br>
 			<a th:href="@{/user1/logout}">로그아웃</a>
 		</p>
 	</body>
