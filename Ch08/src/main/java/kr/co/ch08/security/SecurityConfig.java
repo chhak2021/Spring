@@ -13,9 +13,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
 		// 인가(접근권한) 설정
 		http.authorizeHttpRequests().antMatchers("/").permitAll();
+		http.authorizeHttpRequests().antMatchers("/admin/**").hasRole("ADMIN");
+		http.authorizeHttpRequests().antMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER");
 		
 		// 사이트 위변조 요청 방지
 		http.csrf().disable();
@@ -40,10 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
 		// 로그인 인증처리 서비스 등록
 		auth.userDetailsService(service).passwordEncoder(new MessageDigestPasswordEncoder("SHA-256"));
-		
 	}
-	
 }

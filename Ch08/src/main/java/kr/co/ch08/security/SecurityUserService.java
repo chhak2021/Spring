@@ -29,7 +29,7 @@ public class SecurityUserService implements UserDetailsService {
 		UserDetails userDts = User.builder()
 								.username(user.getUid())
 								.password(user.getPass())
-								.roles("ADMIN")
+								.roles("MEMBER")
 								.build();
 		
 		return userDts;

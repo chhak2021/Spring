@@ -10,5 +10,19 @@ public class MainController {
 	public String index() {
 		return "/index";
 	}
+
+	@GetMapping("/admin/success")
+	public String adminSuccess() {
+		return "/admin/success";
+	}
 	
+	@GetMapping("/member/success")
+	public String memberSuccess() {
+		return "/member/success";
+	}
+	
+	@GetMapping("/guest/success")
+	public String guestSuccess() {
+		return "/guest/success";
+	}
 }

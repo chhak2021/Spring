@@ -7,9 +7,14 @@
 	<body>
 		<h3>Ch08.Spring Security 실습</h3>
 		
-		<h4>인증</h4>
+		<h4>인증 테스트</h4>
 		<a th:href="@{/user1/login}">HttpSession 인증 실습</a><br>
 		<a th:href="@{/user2/login}">Spring Security 인증 실습</a>
+		
+		<h4>인가 테스트</h4>
+		<a th:href="@{/admin/success}">admin/success</a><br>
+		<a th:href="@{/member/success}">member/success</a><br>
+		<a th:href="@{/guest/success}">guest/success</a><br>
 
 	</body>
 </html>
