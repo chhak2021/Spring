@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
 		<meta charset="UTF-8">
 		<title>index</title>
 	</head>
 	<body>
-		<h3>Ch08.Spring Security 실습</h3>
-		
+		<h3>Ch08.Spring Security 실습</h3>		
 		<h4>인증 테스트</h4>
-		<a th:href="@{/user1/login}">HttpSession 인증 실습</a><br>
-		<a th:href="@{/user2/login}">Spring Security 인증 실습</a>
+		
+		<th:block sec:authorize="isAnonymous()">
+			<a th:href="@{/user1/login}" >HttpSession 인증 실습</a><br>
+			<a th:href="@{/user2/login}">Spring Security 인증 실습</a><br>
+		</th:block>
+		<th:block sec:authorize="isAuthenticated()">		
+			<a th:href="@{/user1/logout}">user1 로그아웃</a><br>
+			<a th:href="@{/user2/logout}">user2 로그아웃</a><br>
+		</th:block>
 		
 		<h4>인가 테스트</h4>
-		<a th:href="@{/admin/success}">admin/success</a><br>
+		<th:block sec:authorize="hasRole('ADMIN')">
+			<a th:href="@{/admin/success}">admin/success</a><br>
+		</th:block>
 		<a th:href="@{/member/success}">member/success</a><br>
 		<a th:href="@{/guest/success}">guest/success</a><br>
 
