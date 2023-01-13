@@ -7,7 +7,8 @@
 	</head>
 	<body>
 		<h3>user2 loginSuccess</h3>
-		<p>
+		
+		<p sec:authorize="isAuthenticated()">
 			아이디 : <span>[[${#authentication.principal.uid}]]</span><br>
 			이름 : <span>[[${#authentication.principal.name}]]</span><br>
 			휴대폰 : <span sec:authentication="principal.hp">휴대폰번호</span><br>
@@ -15,5 +16,11 @@
 			날짜 : <span sec:authentication="principal.rdate">가입일</span><br>
 			<a th:href="@{/user2/logout}">로그아웃</a>
 		</p>
+		
+		<p sec:authorize="isAnonymous()">
+			로그인을 해야 합니다.
+			<a th:href="@{/user2/login}">로그인</a>
+		</p>
+		
 	</body>
 </html>

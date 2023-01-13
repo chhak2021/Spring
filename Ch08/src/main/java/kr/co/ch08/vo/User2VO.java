@@ -26,6 +26,7 @@ public class User2VO {
 	private String uid;
 	private String pass;
 	private String name;
+	private int grade;
 	private String hp;
 	private int age;
 	

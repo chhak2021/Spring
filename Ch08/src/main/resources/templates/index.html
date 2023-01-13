@@ -6,9 +6,9 @@
 		<title>index</title>
 	</head>
 	<body>
-		<h3>Ch08.Spring Security 실습</h3>		
-		<h4>인증 테스트</h4>
-		
+		<h3>Ch08.Spring Security 실습</h3>
+				
+		<h4>인증 테스트</h4><!-- 인증(로그인) 테스트 후 인가(권한) 테스트 진행 할것 -->		
 		<th:block sec:authorize="isAnonymous()">
 			<a th:href="@{/user1/login}" >HttpSession 인증 실습</a><br>
 			<a th:href="@{/user2/login}">Spring Security 인증 실습</a><br>

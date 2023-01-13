@@ -1,30 +1,41 @@
 package kr.co.ch08.security;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.util.Assert;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Singular;
 
 @Getter
 @Setter
+@Builder
 public class MyUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	private String uid;
 	private String pass;
 	private String name;
+	private int grade;
 	private String hp;
 	private int age;
 	private LocalDateTime rdate;
-
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// 계정이 갖는 권한 목록
-		return null;
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority("ROLE_"+grade));
+		return authorities;
 	}
 
 	@Override
