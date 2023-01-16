@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				
+				// user1 목록1
+				$('.user1.list1').click(function(){					
+					
+					$.ajax({
+						url: '/Ch09/user1',
+						method: 'GET',
+						dataType: 'json',
+						success: function(data){
+							console.log(data);	
+						}						
+					});
+				});
+				
+				$('.user1.list2').click(function(){
+					
+					let uid = 'a104';
+					
+					$.ajax({
+						url: '/Ch09/user1/'+uid,
+						method: 'GET',
+						dataType: 'json',
+						success: function(data){
+							console.log(data);	
+						}						
+					});
+					
+				});
+				
+				$('.user1.register').click(function(){
+					
+					let jsonData = {
+						"uid": "s101",
+						"name": "홍길동",
+						"hp": "010-1234-1101",
+						"age": 19
+					};
+					
+					$.ajax({
+						url: '/Ch09/user1/',
+						method: 'POST',
+						data: jsonData,
+						dataType: 'json',
+						success: function(data){
+							console.log(data);	
+						}						
+					});
+					
+				});
+				
+				$('.user1.modify').click(function(){
+					
+					let jsonData = {
+							"uid": "s101",
+							"name": "홍길동",
+							"hp": "010-1234-2220",
+							"age": 29
+						};
+						
+						$.ajax({
+							url: '/Ch09/user1/',
+							method: 'PUT',
+							data: jsonData,
+							dataType: 'json',
+							success: function(data){
+								console.log(data);	
+							}						
+						});
+					
+				});
+				
+				$('.user1.delete').click(function(){
+					let uid = 's101';
+					
+					$.ajax({
+						url: '/Ch09/user1/'+uid,
+						method: 'DELETE',
+						dataType: 'json',
+						success: function(data){
+							console.log(data);	
+						}						
+					});
+					
+				});
+			});		
+		</script>
+		
+		
+	</head>
+	<body>
+		<h3>Ch09.스프링 REST 웹서비스 실습</h3>
+		
+		<h4>user1</h4>
+		<button class="user1 list1">user1 목록1</button>
+		<button class="user1 list2">user1 목록2</button>
+		<button class="user1 register">user1 등록</button>
+		<button class="user1 modify">user1 수정</button>
+		<button class="user1 delete">user1 삭제</button>
+		
+	</body>
+</html>
