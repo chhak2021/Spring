@@ -38,10 +38,10 @@ public class User1Controller {
 	@ResponseBody
 	@PostMapping("/user1")
 	public Map<String, Integer> register(User1VO vo) {		
-		service.insertUser1(vo);
+		int result = service.insertUser1(vo);
 		
 		Map<String, Integer> resultMap = new HashMap<>();
-		resultMap.put("result", 1);
+		resultMap.put("result", result);
 		
 		return resultMap;
 	}
@@ -49,11 +49,10 @@ public class User1Controller {
 	@ResponseBody
 	@PutMapping("/user1")
 	public Map<String, Integer> modify(User1VO vo) {
-		
-		service.updateUser1(vo);
+		int result = service.updateUser1(vo);
 		
 		Map<String, Integer> resultMap = new HashMap<>();
-		resultMap.put("result", 1);
+		resultMap.put("result", result);
 		
 		return resultMap;
 	}
@@ -61,9 +60,9 @@ public class User1Controller {
 	@ResponseBody
 	@DeleteMapping("/user1/{id}")
 	public Map<String, Integer> delete(@PathVariable("id") String uid) {
-		service.deleteUser1(uid);
+		int result = service.deleteUser1(uid);
 		Map<String, Integer> resultMap = new HashMap<>();
-		resultMap.put("result", 1);
+		resultMap.put("result", result);
 		
 		return resultMap;
 	}

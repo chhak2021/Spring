@@ -10,10 +10,9 @@ import kr.co.ch09.vo.User1VO;
 @Mapper
 @Repository
 public interface User1DAO {
-
-	public void insertUser1(User1VO vo);
+	public int insertUser1(User1VO vo);
 	public User1VO selectUser1(String uid);
 	public List<User1VO> selectUser1s();
-	public void updateUser1(User1VO vo);
-	public void deleteUser1(String uid);
+	public int updateUser1(User1VO vo);
+	public int deleteUser1(String uid);
 }
