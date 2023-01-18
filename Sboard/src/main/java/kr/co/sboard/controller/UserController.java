@@ -1,5 +1,8 @@
 package kr.co.sboard.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.sboard.service.UserService;
 import kr.co.sboard.vo.TermsVO;
 import kr.co.sboard.vo.UserVO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class UserController {
 
@@ -43,4 +50,34 @@ public class UserController {
 		model.addAttribute(vo);		
 		return "user/terms";
 	}
+	
+	@ResponseBody
+	@GetMapping("user/checkUid")
+	public Map<String, Integer> checkUid(@RequestParam("uid") String uid) {
+		
+		log.info("uid : " + uid);
+		
+		Map<String, Integer> resultMap = new HashMap<>();
+		resultMap.put("result", 1);
+		
+		return resultMap;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <title>회원가입</title>    
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script>
+    	window.onload = function(){
+    		
+    		const btnCheckUid = document.getElementById('btnCheckUid');
+    		
+    		btnCheckUid.addEventListener('click', ()=>{
+    			
+    			let uid = document.querySelector('input[name=uid]').value;
+    			
+    			// AJAX 전송
+    			const xhr = new XMLHttpRequest();
+    			xhr.open("GET", "/Sboard/user/checkUid?uid="+uid);
+    			xhr.responseType = "json";
+    			xhr.send();
+    			
+    			xhr.onreadystatechange = function(){
+    				
+    				if(xhr.readyState == XMLHttpRequest.DONE){
+    					
+    					if(xhr.status == 200){
+    						const data = xhr.response;
+    						console.log(data);
+    					}else{
+    						alert("Request fail...");
+    					}
+    				}
+    			}    			
+    		});
+    	}
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -20,7 +50,7 @@
                         <th>아이디</th>
                         <td>
                             <input type="text" name="uid" placeholder="아이디 입력"/>
-                            <button type="button"><img src="../img/chk_id.gif" alt="중복확인"/></button>
+                            <button type="button" id="btnCheckUid"><img src="../img/chk_id.gif" alt="중복확인"/></button>
                             <span class="resultUid"></span>
                         </td>
                     </tr>
