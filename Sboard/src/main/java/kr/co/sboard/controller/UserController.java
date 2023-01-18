@@ -56,9 +56,10 @@ public class UserController {
 	public Map<String, Integer> checkUid(@RequestParam("uid") String uid) {
 		
 		log.info("uid : " + uid);
+		int result = service.countByUid(uid);
 		
 		Map<String, Integer> resultMap = new HashMap<>();
-		resultMap.put("result", 1);
+		resultMap.put("result", result);
 		
 		return resultMap;
 	}

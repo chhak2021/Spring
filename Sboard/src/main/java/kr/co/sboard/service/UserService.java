@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.co.sboard.dao.UserDAO;
+import kr.co.sboard.repository.UserRepo;
 import kr.co.sboard.vo.TermsVO;
 import kr.co.sboard.vo.UserVO;
 
@@ -15,6 +16,9 @@ public class UserService {
 	
 	@Autowired
 	private UserDAO dao;
+	
+	@Autowired
+	private UserRepo repo;
 	
 	@Autowired
 	private PasswordEncoder encoder;
@@ -40,6 +44,10 @@ public class UserService {
 	}
 	public int deleteUser(String uid) {
 		return dao.deleteUser(uid);
+	}
+	
+	public int countByUid(String uid) {
+		return repo.countByUid(uid);
 	}
 	
 }

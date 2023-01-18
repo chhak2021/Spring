@@ -26,6 +26,17 @@
     					if(xhr.status == 200){
     						const data = xhr.response;
     						console.log(data);
+    						
+    						const resultUid = document.querySelector('.resultUid');
+    						
+    						if(data.result == 1){
+    							resultUid.innerText = '이미 사용중인 아이디 입니다.';
+    							resultUid.style.color = 'red';
+    						}else{
+    							resultUid.innerText = '사용 가능한 아이디 입니다.';
+    							resultUid.style.color = 'green';
+    						}
+    						
     					}else{
     						alert("Request fail...");
     					}

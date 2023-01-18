@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import kr.co.sboard.dao.UserDAO;
+import kr.co.sboard.repository.UserRepo;
 import kr.co.sboard.service.UserService;
 import kr.co.sboard.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +25,11 @@ class SboardApplicationTests {
 	@Autowired
 	private UserService service;
 	
+	@Autowired
+	private UserRepo repo;
 	
-	@Test
+	
+	
 	public void insertTest() {
 		
 		UserVO vo = UserVO.builder()
@@ -39,6 +43,14 @@ class SboardApplicationTests {
 					.build();
 		
 		int result = service.insertUser(vo);
+		
+		log.info("result : " + result);
+	}
+	
+	@Test
+	public void countUid() {
+		
+		int result = repo.countByUid("test12");
 		
 		log.info("result : " + result);
 		
