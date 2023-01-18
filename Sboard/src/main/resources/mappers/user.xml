@@ -8,4 +8,19 @@
 		select * from `board_terms`;
 	</select>
 	
+	<insert id="insertUser">
+		insert into `board_user` set
+			`uid`=#{uid},
+			`pass`=#{pass},
+			`name`=#{name},
+			`nick`=#{nick},
+			`email`=#{email},
+			`hp`=#{hp},
+			`zip`=#{zip},
+			`addr1`=#{addr1},
+			`addr2`=#{addr2},
+			`regip`=#{regip},
+			`rdate`=NOW();	
+	</insert>
+	
 </mapper>
