@@ -13,11 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest
 class SboardApplicationTests {
-
 	
 	void contextLoads() {
 	}
-	
 	
 	@Autowired
 	private UserDAO dao;
@@ -28,10 +26,7 @@ class SboardApplicationTests {
 	@Autowired
 	private UserRepo repo;
 	
-	
-	
 	public void insertTest() {
-		
 		UserVO vo = UserVO.builder()
 					.uid("test2")
 					.pass1("1234")
@@ -43,17 +38,13 @@ class SboardApplicationTests {
 					.build();
 		
 		int result = service.insertUser(vo);
-		
 		log.info("result : " + result);
 	}
 	
 	@Test
 	public void countUid() {
-		
 		int result = repo.countByUid("test12");
-		
 		log.info("result : " + result);
-		
 	}
 	
 	
