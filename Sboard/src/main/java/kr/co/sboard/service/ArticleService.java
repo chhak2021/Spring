@@ -27,25 +27,13 @@ public class ArticleService {
 	@Transactional
 	public int insertArticle(ArticleVO vo) {
 		
-		int result = 0;
-		MultipartFile file = vo.getFname();
+		// 글 등록
+		int result = dao.insertArticle(vo);
 		
-		if(file.isEmpty()) {
-			// 글 등록
-			vo.setFile(0);
-			result = dao.insertArticle(vo);
-			log.info("no : " + vo.getNo());
-			
-		}else {
-			// 글 등록
-			vo.setFile(1);
-			result = dao.insertArticle(vo);
-			log.info("no : " + vo.getNo());
-			
-			// 파일 업로드
-			FileVO fvo = fileUpload(file);
-			fvo.setParent(vo.getNo());
-			
+		// 파일 업로드
+		FileVO fvo = fileUpload(vo);
+		
+		if(fvo != null) {
 			// 파일 등록
 			dao.insertFile(fvo);
 		}
@@ -69,31 +57,35 @@ public class ArticleService {
 	@Value("${spring.servlet.multipart.location}")
 	private String uploadPath;
 	
-	public FileVO fileUpload(MultipartFile file) {
+	public FileVO fileUpload(ArticleVO vo) {
+		// 첨부 파일
+		MultipartFile file = vo.getFname();
+		FileVO fvo = null;
 		
-		FileVO fvo = new FileVO();
-		
-		// 시스템 경로
-		String path = new File(uploadPath).getAbsolutePath();
-		log.info("path : " + path);
-		
-		// 새 파일명 생성
-		String oName = file.getOriginalFilename();
-		String ext = oName.substring(oName.lastIndexOf("."));
-		String nName = UUID.randomUUID().toString()+ext;
-		
-		// 파일 저장
-		try {
-			file.transferTo(new File(path, nName));
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(!file.isEmpty()) {
+			// 시스템 경로
+			String path = new File(uploadPath).getAbsolutePath();
+			
+			// 새 파일명 생성
+			String oName = file.getOriginalFilename();
+			String ext = oName.substring(oName.lastIndexOf("."));
+			String nName = UUID.randomUUID().toString()+ext;
+			
+			// 파일 저장
+			try {
+				file.transferTo(new File(path, nName));
+			} catch (IllegalStateException e) {
+				log.error(e.getMessage());
+			} catch (IOException e) {
+				log.error(e.getMessage());
+			}
+			
+			fvo = FileVO.builder()
+					.parent(vo.getNo())
+					.oriName(oName)
+					.newName(nName)
+					.build();
 		}
-		
-		
-		fvo.setOriName(oName);
-		fvo.setNewName(nName);
 		
 		return fvo;
 	}

@@ -8,6 +8,12 @@
 		insert into `board_article` set
 			`title`=#{title},
 			`content`=#{content},
+			<if test="fname.isEmpty() == true">
+				`file`=0,
+			</if>
+			<if test="fname.isEmpty() == false">
+				`file`=1,
+			</if>
 			`uid`=#{uid},
 			`regip`=#{regip},
 			`rdate`= NOW();	
