@@ -1,5 +1,7 @@
 package kr.co.sboard.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +24,7 @@ public class ArticleVO {
 	private String title;
 	private String content;
 	private int file;
-	private String fname;
+	private MultipartFile fname;
 	private int hit;
 	private String uid;
 	private String regip;

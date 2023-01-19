@@ -4,14 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.sboard.dao.ArticleDAO">
 
-	
-	<insert id="insertArticle">
+	<insert id="insertArticle" useGeneratedKeys="true" keyProperty="no">
 		insert into `board_article` set
 			`title`=#{title},
 			`content`=#{content},
 			`uid`=#{uid},
 			`regip`=#{regip},
 			`rdate`= NOW();	
+	</insert>
+	
+	<insert id="insertFile">
+		insert into `board_file` set
+			`parent`=#{parent},
+			`newName`=#{newName},
+			`oriName`=#{oriName};
 	</insert>
 	
 </mapper>

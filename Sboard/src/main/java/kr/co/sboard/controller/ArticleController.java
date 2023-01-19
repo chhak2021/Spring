@@ -48,11 +48,12 @@ public class ArticleController {
 	}
 	
 	@PostMapping("write")
-	public String write(ArticleVO vo, HttpServletRequest req) {
-		String regip = req.getRemoteAddr();
-		vo.setRegip(regip);
+	public String write(ArticleVO vo) {
 		
 		service.insertArticle(vo);
+		
+		
+		
 		return "redirect:/list";
 	}
 }
