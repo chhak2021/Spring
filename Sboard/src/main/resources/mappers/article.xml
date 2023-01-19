@@ -31,7 +31,12 @@
 		join `board_user` as b
 		on a.uid = b.uid 
 		where `parent`=0
-		order by `no` desc;
+		order by `no` desc
+		limit #{start}, 10;
+	</select>
+	
+	<select id="selectCountTotal" resultType="int">
+		select count(`no`) from `board_article` where `parent`=0;
 	</select>
 	
 	

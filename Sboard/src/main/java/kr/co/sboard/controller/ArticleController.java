@@ -25,15 +25,25 @@ public class ArticleController {
 	private ArticleService service;
 
 	@GetMapping("list")
-	public String list(@AuthenticationPrincipal MyUserDetails myUser, Model model) {
+	public String list(@AuthenticationPrincipal MyUserDetails myUser, Model model, String pg) {
 		
 		UserEntity user = myUser.getUser();		
-		//log.info(user.toString());
 		
-		List<ArticleVO> articles = service.selectArticles();
+		int currentPage = service.getCurrentPage(pg);
+		int start = service.getLimitStart(currentPage);
+		long total = service.getTotalCount();
+		int lastPage = service.getLastPageNum(total);
+		int pageStartNum = service.getPageStartNum(total, start);
+		int groups[] = service.getPageGroup(currentPage, lastPage);
+		
+		List<ArticleVO> articles = service.selectArticles(start);
 		
 		model.addAttribute("user", user);
 		model.addAttribute("articles", articles);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("pageStartNum", pageStartNum);
+		model.addAttribute("groups", groups);
 		
 		return "list";
 	}
@@ -55,11 +65,7 @@ public class ArticleController {
 	
 	@PostMapping("write")
 	public String write(ArticleVO vo) {
-		
 		service.insertArticle(vo);
-		
-		
-		
 		return "redirect:/list";
 	}
 }

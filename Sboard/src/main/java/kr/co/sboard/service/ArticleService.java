@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sboard.dao.ArticleDAO;
+import kr.co.sboard.repository.ArticleRepo;
 import kr.co.sboard.vo.ArticleVO;
 import kr.co.sboard.vo.FileVO;
 import lombok.extern.slf4j.Slf4j;
@@ -23,18 +24,19 @@ public class ArticleService {
 	@Autowired
 	private ArticleDAO dao;
 	
+	@Autowired
+	private ArticleRepo repo;
+	
 	
 	@Transactional
 	public int insertArticle(ArticleVO vo) {
 		
 		// 글 등록
 		int result = dao.insertArticle(vo);
-		
 		// 파일 업로드
 		FileVO fvo = fileUpload(vo);
-		
+		// 파일 등록
 		if(fvo != null) {
-			// 파일 등록
 			dao.insertFile(fvo);
 		}
 		
@@ -44,8 +46,8 @@ public class ArticleService {
 	public ArticleVO selectArticle(int no) {
 		return dao.selectArticle(no);
 	}
-	public List<ArticleVO> selectArticles() {
-		return dao.selectArticles();
+	public List<ArticleVO> selectArticles(int start) {
+		return dao.selectArticles(start);
 	}
 	public int updateArticle(ArticleVO vo) {
 		return dao.updateArticle(vo);
@@ -89,4 +91,60 @@ public class ArticleService {
 		
 		return fvo;
 	}
+	
+	// 페이지 시작값
+	public int getLimitStart(int currentPage) {
+		return (currentPage - 1) * 10;
+	}
+	
+	// 현재 페이지 
+	public int getCurrentPage(String pg) {
+		int currentPage = 1;
+		
+		if(pg != null) {
+			currentPage = Integer.parseInt(pg);
+		}
+		return currentPage;
+	}
+	
+	// 전체 게시물 갯수
+	public long getTotalCount() {
+		return dao.selectCountTotal();
+	}
+	
+	// 마지막 페이지 번호
+	public int getLastPageNum(long total) {
+		
+		int lastPage = 0;
+		
+		if(total % 10 == 0) {
+			lastPage = (int) (total / 10);
+		}else {
+			lastPage = (int) (total / 10) + 1;
+		}
+		
+		return lastPage;
+	}
+	
+	// 페이지 시작 번호
+	public int getPageStartNum(long total, int start) {
+		return (int) (total - start);
+	}
+		
+	// 페이지 그룹
+	public int[] getPageGroup(int currentPage, int lastPage) {
+		
+		int groupCurrent = (int) Math.ceil(currentPage / 10.0);
+		int groupStart = (groupCurrent - 1) * 10 + 1;
+		int groupEnd = groupCurrent * 10;
+		
+		if(groupEnd > lastPage) {
+			groupEnd = lastPage;
+		}
+		
+		int[] groups = {groupStart, groupEnd};
+		
+		return groups;
+	}
+	
 }
