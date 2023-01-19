@@ -39,6 +39,9 @@ public class UserController {
 	public String register(UserVO vo, HttpServletRequest req) {
 		
 		vo.setRegip(req.getRemoteAddr());
+		
+		log.info(vo.toString());
+		
 		int result = service.insertUser(vo);
 		
 		return "redirect:/user/login?success="+result;

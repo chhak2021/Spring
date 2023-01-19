@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>글쓰기</title>    
@@ -10,14 +11,15 @@
         <header>
             <h3>Board System v1.0</h3>
             <p>
-                <span class="nick">길동이</span>님 반갑습니다.
-                <a href="#" class="logout">[로그아웃]</a>
+                <span class="nick">[[${#authentication.principal.user.nick}]]</span>님 반갑습니다.
+                <a th:href="@{/user/logout}" class="logout">[로그아웃]</a>
             </p>
         </header>
 
         <main id="board" class="write">
             
-            <form action="#">
+            <form th:action="@{/write}" method="post">
+            	<input type="hidden" name="uid" th:value="${#authentication.principal.user.uid}">
                 <table border="0">
                     <caption>글쓰기</caption>
                     <tr>
@@ -30,12 +32,12 @@
                     </tr>
                     <tr>
                         <th>파일</th>
-                        <td><input type="file" name="file"/></td>
+                        <td><input type="file" name="fname"/></td>
                     </tr>
                 </table>
 
                 <div>
-                    <a href="./list.html" class="btn btnCancel">취소</a>
+                    <a th:href="@{/list}" class="btn btnCancel">취소</a>
                     <input type="submit" value="작성완료" class="btn btnComplete"/>
                 </div>
             </form>

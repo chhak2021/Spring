@@ -11,7 +11,7 @@
         <header>
             <h3>Board System v1.0</h3>
             <p>
-                <span class="nick">[[${#authentication.principal.user.nick}]]</span>님 반갑습니다.
+                <span class="nick">[[${user.nick}]]</span>님 반갑습니다.
                 <a th:href="@{/user/logout}" class="logout">[로그아웃]</a>
             </p>
         </header>
@@ -45,7 +45,7 @@
                 <a href="#" class="next">다음</a>
             </div>
 
-            <a href="./write.html" class="btnWrite">글쓰기</a>
+            <a th:href="@{/write}" class="btnWrite">글쓰기</a>
 
         </main>
 
