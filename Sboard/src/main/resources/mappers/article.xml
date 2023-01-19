@@ -26,4 +26,25 @@
 			`oriName`=#{oriName};
 	</insert>
 	
+	<select id="selectArticles" resultType="kr.co.sboard.vo.ArticleVO">
+		select a.*, b.`nick` from `board_article` as a
+		join `board_user` as b
+		on a.uid = b.uid 
+		where `parent`=0
+		order by `no` desc;
+	</select>
+	
+	
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+

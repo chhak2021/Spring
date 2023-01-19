@@ -27,12 +27,12 @@
                     <th>날짜</th>
                     <th>조회</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td><a href="./view.html">테스트 제목입니다.[3]</a></td>
-                    <td>길동이</td>
-                    <td>20-05-12</td>
-                    <td>12</td>
+                <tr th:each="article:${articles}">
+                    <td>[[${article.no}]]</td>
+                    <td><a th:href="@{/view}">[[${article.title}]]&#91;[[${article.comment}]]&#93;</a></td>
+                    <td>[[${article.nick}]]</td>
+                    <td>[[${article.rdate}]]</td>
+                    <td>[[${article.hit}]]</td>
                 </tr>               
                 
             </table>

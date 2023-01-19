@@ -1,5 +1,7 @@
 package kr.co.sboard.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,13 @@ public class ArticleController {
 	public String list(@AuthenticationPrincipal MyUserDetails myUser, Model model) {
 		
 		UserEntity user = myUser.getUser();		
-		log.info(user.toString());
+		//log.info(user.toString());
+		
+		List<ArticleVO> articles = service.selectArticles();
 		
 		model.addAttribute("user", user);
+		model.addAttribute("articles", articles);
+		
 		return "list";
 	}
 	
