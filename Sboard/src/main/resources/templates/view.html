@@ -27,7 +27,7 @@
                 <tr th:if="${article.file == 1}">
                     <th>파일</th>
                     <td>
-                    	<a href="#">[[${article.fileVO.oriName}]]</a>
+                    	<a th:href="@{/download(fno=${article.fileVO.fno})}">[[${article.fileVO.oriName}]]</a>
                     	<span>[[${article.fileVO.download}]]</span>회 다운로드</td>
                 </tr>
                 <tr>

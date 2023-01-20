@@ -26,6 +26,14 @@
 			`oriName`=#{oriName};
 	</insert>
 	
+	<select id="selectFile" resultType="kr.co.sboard.vo.FileVO">
+		select * from `board_file` where `fno`=#{fno};
+	</select>
+	
+	<update id="updateDownload">
+		update `board_file` set `download` = `download` + 1 where `fno`=#{fno};
+	</update>
+	
 	<select id="selectArticles" resultType="kr.co.sboard.vo.ArticleVO">
 		select a.*, b.`nick` from `board_article` as a
 		join `board_user` as b
