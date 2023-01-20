@@ -12,12 +12,24 @@
     		btnCheckUid.addEventListener('click', ()=>{
     			
     			let uid = document.querySelector('input[name=uid]').value;
+    			console.log('uid : ' + uid);
+    			
+    			let jsonData = {"uid": uid};
+    			console.log('jsonData : ' + jsonData);
     			
     			// AJAX 전송
+    			/*
     			const xhr = new XMLHttpRequest();
     			xhr.open("GET", "/Sboard/user/checkUid?uid="+uid);
     			xhr.responseType = "json";
     			xhr.send();
+    			*/
+    			
+    			const xhr = new XMLHttpRequest();
+    			xhr.open("GET", "/Sboard/user/checkUid");    			
+    			xhr.setRequestHeader('content-type', 'application/json');
+    			xhr.responseType = "json";
+    			xhr.send(JSON.stringify(jsonData));
     			
     			xhr.onreadystatechange = function(){
     				
@@ -27,6 +39,7 @@
     						const data = xhr.response;
     						console.log(data);
     						
+    						/*
     						const resultUid = document.querySelector('.resultUid');
     						
     						if(data.result == 1){
@@ -36,12 +49,13 @@
     							resultUid.innerText = '사용 가능한 아이디 입니다.';
     							resultUid.style.color = 'green';
     						}
+    						*/
     						
     					}else{
     						alert("Request fail...");
     					}
     				}
-    			}    			
+    			}
     		});
     	}
     </script>

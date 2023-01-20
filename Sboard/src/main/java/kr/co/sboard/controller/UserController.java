@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -54,6 +55,7 @@ public class UserController {
 		return "user/terms";
 	}
 	
+	/*
 	@ResponseBody
 	@GetMapping("user/checkUid")
 	public Map<String, Integer> checkUid(@RequestParam("uid") String uid) {
@@ -63,6 +65,19 @@ public class UserController {
 		
 		Map<String, Integer> resultMap = new HashMap<>();
 		resultMap.put("result", result);
+		
+		return resultMap;
+	}
+	*/
+	
+	@ResponseBody
+	@GetMapping("user/checkUid")
+	public Map<String, Integer> checkUid(@RequestBody Map<String, String> map) {
+		
+		log.info("map : " + map.get("uid"));
+			
+		Map<String, Integer> resultMap = new HashMap<>();
+		resultMap.put("result", 100);
 		
 		return resultMap;
 	}

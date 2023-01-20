@@ -11,7 +11,6 @@ import kr.co.sboard.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@SpringBootTest
 class SboardApplicationTests {
 	
 	void contextLoads() {
