@@ -30,7 +30,6 @@ public class ArticleService {
 	
 	@Transactional
 	public int insertArticle(ArticleVO vo) {
-		
 		// 글 등록
 		int result = dao.insertArticle(vo);
 		// 파일 업로드

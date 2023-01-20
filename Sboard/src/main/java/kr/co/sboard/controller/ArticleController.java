@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.sboard.entity.UserEntity;
 import kr.co.sboard.security.MyUserDetails;
@@ -54,7 +55,9 @@ public class ArticleController {
 	}
 	
 	@GetMapping("view")
-	public String view() {
+	public String view(@RequestParam("no") int no, Model model) {
+		ArticleVO article = service.selectArticle(no);
+		model.addAttribute("article", article);
 		return "view";
 	}
 	

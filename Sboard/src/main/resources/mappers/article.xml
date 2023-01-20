@@ -39,6 +39,36 @@
 		select count(`no`) from `board_article` where `parent`=0;
 	</select>
 	
+	<select id="selectArticle" resultMap="selectArticleResultMap">
+		select * from `board_article` as a
+		left join `board_file` as b
+		on a.no = b.parent		
+		where `no`=#{no};
+	</select>
+	
+	<!-- 조회(selecct)결과를 상세하게 매핑하기 위한 사용자 정의 Map -->
+	<resultMap id="selectArticleResultMap" type="kr.co.sboard.vo.ArticleVO">
+		<id column="no" property="no"/>
+		<result column="parent" property="parent"/>
+		<result column="comment" property="comment"/>
+		<!-- <result column="cate" property="cate"/> -->
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="file" property="file"/>
+		<!-- <result column="hit" property="hit"/> -->
+		<result column="uid" property="uid"/>
+		<!-- <result column="regip" property="regip"/> -->
+		<result column="rdate" property="rdate"/>
+		
+		<!-- 연관관계 매핑 -->
+		<association property="fileVO" javaType="kr.co.sboard.vo.FileVO">
+			<id column="fno" property="fno"/>
+			<result column="parent" property="parent"/>
+			<result column="newName" property="newName"/>
+			<result column="oriName" property="oriName"/>
+			<result column="download" property="download"/>
+		</association>
+	</resultMap>
 	
 	
 </mapper>
