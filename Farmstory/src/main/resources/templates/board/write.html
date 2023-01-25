@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:include="@{/_header.html}"/>
-<th:block th:include="@{/board/_croptalk.html}"/>
+<th:block th:include="@{_header}"/>
+<th:block th:include="@{board/__${group}__.html}"/>
 <main id="board" class="write">
             
     <form th:action="@{/write}" method="post" enctype="multipart/form-data">
@@ -25,7 +25,7 @@
         </table>
 
         <div>
-            <a th:href="@{/board/list}" class="btn btnCancel">취소</a>
+            <a th:href="@{/board/list(group=${group},cate=${cate})}" class="btn btnCancel">취소</a>
             <input type="submit" value="작성완료" class="btn btnComplete"/>
         </div>
     </form>

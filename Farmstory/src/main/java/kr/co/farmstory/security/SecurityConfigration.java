@@ -14,9 +14,9 @@ public class SecurityConfigration {
 	
 	@Autowired
 	private SecurityUserService service;
-	
+
 	@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 		// 인가(접근권한) 설정
 		http.authorizeHttpRequests().antMatchers("/").permitAll();
@@ -39,7 +39,6 @@ public class SecurityConfigration {
 		.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
 		.logoutSuccessUrl("/user/login?success=200");
 		*/
-
 		// 사용자 인증 처리 컴포넌트 서비스 등록
 		http.userDetailsService(service);
 		

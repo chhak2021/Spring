@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:include="@{/_header.html}"/>
-<th:block th:include="@{/board/_croptalk.html}"/>
+<th:block th:include="@{_header}"/>
+<th:block th:include="@{board/__${group}__.html}"/>
 <main id="board" class="view">
 
     <table>
@@ -25,8 +25,8 @@
 
     <div>
         <a th:href="@{/#}" class="btn btnRemove">삭제</a>
-        <a th:href="@{/board/modify}" class="btn btnModify">수정</a>
-        <a th:href="@{/board/list}" class="btn btnList">목록</a>
+        <a th:href="@{/board/modify(group=${group},cate=${cate})}" class="btn btnModify">수정</a>
+        <a th:href="@{/board/list(group=${group},cate=${cate})}" class="btn btnList">목록</a>
     </div>
 
     <!-- 댓글목록 -->
