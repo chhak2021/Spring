@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="@{_header.html}"/>
+<main id="board" class="list">
+
+    <table border="0">
+        <caption>글목록</caption>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>글쓴이</th>
+            <th>날짜</th>
+            <th>조회</th>
+        </tr>
+        <!--/*
+        <tr th:each="article,i:${articles}">
+            <td>[[${pageStartNum - i.index}]]</td>
+            <td><a th:href="@{/view(no=${article.no})}" th:text="|${article.title} [${article.comment}]|">제목</a></td>
+            <td>[[${article.nick}]]</td>
+            <td>[[${article.rdate}]]</td>
+            <td>[[${article.hit}]]</td>
+        </tr>
+        */-->
+    </table>
+
+    <div class="page">
+        <!--/*
+        <th:block th:if="${groups[0]>1}">
+            <a th:href="@{/list(pg=${groups[0]-1})}" class="prev">이전</a>
+        </th:block>
+
+        <th:block th:each="num:${#numbers.sequence(groups[0],groups[1])}">
+
+            <a th:href="@{/list(pg=${num})}"
+               th:class="${num==currentPage?'num current':'num'}">[[${num}]]</a>
+
+        </th:block>
+
+        <th:block th:if="${groups[1]<lastPage}">
+            <a th:href="@{/list(pg=${groups[1]+1})}" class="next">다음</a>
+        </th:block>
+        */-->
+    </div>
+
+    <a th:href="@{/board/write}" class="btnWrite">글쓰기</a>
+</main>
+<th:block th:include="@{_footer.html}"/>
+</html>
