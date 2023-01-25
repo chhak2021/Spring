@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:include="@{_header.html}"/>
+<th:block th:include="@{_header}"/>
+<th:block th:include="@{board/__${group}__.html}"/>
 <main id="board" class="list">
 
     <table border="0">
@@ -43,5 +44,11 @@
 
     <a th:href="@{/board/write}" class="btnWrite">글쓰기</a>
 </main>
+
+<!-- 내용 끝 -->
+</article>
+</section>
+</div>
+
 <th:block th:include="@{_footer.html}"/>
 </html>

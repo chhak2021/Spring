@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:include="@{_header.html}"/>
-
+<th:block th:include="@{/_header.html}"/>
+<th:block th:include="@{/board/_croptalk.html}"/>
 <main id="board" class="modify">
 
     <form action="#">
@@ -26,5 +26,11 @@
         </div>
     </form>
 </main>
+
+<!-- 내용 끝 -->
+</article>
+</section>
+</div>
+
 <th:block th:include="@{_footer.html}"/>
 </html>

@@ -37,9 +37,9 @@
             
             <ul class="gnb">
                 <li><a th:href="@{/introduction/hello}">팜스토리소개</a></li>
-                <li><a th:href="@{/board/list}"><img th:src="@{/img/head_menu_badge.png}" alt="30%"/>장보기</a></li>
-                <li><a th:href="@{/board/list}">농작물이야기</a></li>
-                <li><a th:href="@{/board/list}">이벤트</a></li>
-                <li><a th:href="@{/board/list}">커뮤니티</a></li>
+                <li><a th:href="@{/board/list(group=_market, cate=market)}"><img th:src="@{/img/head_menu_badge.png}" alt="30%"/>장보기</a></li>
+                <li><a th:href="@{/board/list(group=_croptalk, cate=story)}">농작물이야기</a></li>
+                <li><a th:href="@{/board/list(group=_event, cate=event)}">이벤트</a></li>
+                <li><a th:href="@{/board/list(group=_community, cate=notice)}">커뮤니티</a></li>
             </ul>
         </header>

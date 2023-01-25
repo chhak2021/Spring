@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="sub">
+    <div><img src="../img/sub_top_tit3.png" alt="CROP TALK"></div>
+    <section class="cate3">
+        <aside>
+            <img src="../img/sub_aside_cate3_tit.png" alt="농작물이야기"/>
+
+            <ul class="lnb">
+                <li th:classappend="${cate}=='story'?'on'"><a th:href="@{/board/list(group=_croptalk, cate=story)}">농작물이야기</a></li>
+                <li th:classappend="${cate}=='grow'?'on'"><a th:href="@{/board/list(group=_croptalk, cate=grow)}">텃밭가꾸기</a></li>
+                <li th:classappend="${cate}=='school'?'on'"><a th:href="@{/board/list(group=_croptalk, cate=school)}">귀농학교</a></li>
+            </ul>
+
+        </aside>
+        <article>
+            <nav>
+                <img th:src="@{/img/sub_nav_tit_cate3_{value}.png(value=${cate})}" alt="농작물이야기"/>
+                <p>
+                    HOME > 농작물이야기 >
+                    <em th:if="${cate}=='story'">농작물이야기</em>
+                    <em th:if="${cate}=='grow'">텃밭가꾸기</em>
+                    <em th:if="${cate}=='school'">귀농학교</em>
+                </p>
+            </nav>
+            <!-- 내용 시작 -->
