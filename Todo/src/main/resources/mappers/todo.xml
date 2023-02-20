@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.todo.dao.MainDAO">
+    <!-- create -->
+    <insert id="insertTodoList" parameterType="kr.co.todo.vo.TodoVO"
+            useGeneratedKeys="true" keyProperty="no" keyColumn="no">
+        INSERT INTO todo SET content=#{content} , rdate=NOW();
+    </insert>
+    
+    <!-- read -->
+    <!-- 2023/02/20 // 김철학 // todo리스트 불러오기 -->
+    <select id="selectTodoList" resultType="kr.co.todo.vo.TodoVO">
+        SELECT * FROM todo;
+    </select>
+    
+    <!-- upload -->
+    <!-- 2023/02/20 // 김철학 // todo리스트 업데이트 쿼리문 -->
+    <update id="updateTodoList">
+        UPDATE todo SET status=${status} WHERE no=${no};
+    </update>
+    
+    <!-- delete -->
+    <delete id="deleteTodoList" parameterType="kr.co.todo.vo.TodoVO">
+        DELETE FROM todo WHERE no=#{no};
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
